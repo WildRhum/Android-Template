@@ -5,14 +5,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 
 @Composable
-fun Dashboard(navController: NavController) {
-    var text by remember { mutableStateOf("Initial text️") }
+fun Dashboard(
+    navController: NavController,
+    viewModel: DashboardViewModel = hiltViewModel()
+) {
+    val text by remember { mutableStateOf(viewModel.text) }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -20,6 +27,6 @@ fun Dashboard(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = text)
+        Text(text = text.value ?: "Initial text️")
     }
 }
