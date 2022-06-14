@@ -21,7 +21,9 @@ import com.example.android_template.ui.dashboard.Dashboard
 import com.example.android_template.ui.home.Home
 import com.example.android_template.ui.notifications.Notifications
 import com.example.android_template.ui.theme.AndroidTemplateTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
