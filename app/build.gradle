@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk compile_version
 
     defaultConfig {
         applicationId "com.example.android_template"
-        minSdk 26
-        targetSdk 32
+        minSdk projet_min_sdk
+        targetSdk projet_target_sdk
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -55,6 +55,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
     namespace 'com.example.android_template'
 }
 
@@ -68,7 +69,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.21"
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.7.0'
 
     // Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.42"
