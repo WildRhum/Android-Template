@@ -37,7 +37,7 @@ class HomeViewModelImpl  constructor(private val albumRepository: AlbumRepositor
                 albumRepository.fetchAlbums()
             }.fold(
                 onSuccess = { albums ->
-                    _albumList.update { albums.getOrThrow() }
+                    _albumList.update { albums.getOrThrow().take(2) }
                 },
                 onFailure = { exception -> throw exception }
             )
