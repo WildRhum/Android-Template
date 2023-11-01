@@ -1,23 +1,25 @@
 package com.example.communication.models
 
-import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonProperty
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
-data class UserResponse @JsonCreator constructor(
-    @JsonProperty("id")
+@Parcelize
+data class UserResponse(
+    @SerializedName("id")
     val userId: Int? = null,
-    @JsonProperty("name")
+    @SerializedName("name")
     val name: String? = null,
-    @JsonProperty("username")
+    @SerializedName("username")
     val username: String? = null,
-    @JsonProperty("email")
+    @SerializedName("email")
     val email: String? = null,
-    @JsonProperty("address")
+    @SerializedName("address")
     val address: AddressResponse? = null,
-    @JsonProperty("phone")
+    @SerializedName("phone")
     val phone: String? = null,
-    @JsonProperty("website")
+    @SerializedName("website")
     val website: String? = null,
-    @JsonProperty("company")
+    @SerializedName("company")
     val company: CompanyResponse? = null
-)
+) : Parcelable
