@@ -48,4 +48,7 @@ dependencies {
     implementation "io.insert-koin:koin-android:3.2.0"
     // Koin for Tests
     testImplementation "io.insert-koin:koin-test-junit4:3.2.0"
+
+    // Test
+    testImplementation 'junit:junit:4.13.2'
 }
