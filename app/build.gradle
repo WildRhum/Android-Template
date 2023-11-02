@@ -2,16 +2,15 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk 32
+    compileSdk compile_version
 
     defaultConfig {
         applicationId "com.example.android_template"
-        minSdk 26
-        targetSdk 32
+        minSdk projet_min_sdk
+        targetSdk projet_target_sdk
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -55,6 +54,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
     namespace 'com.example.android_template'
 }
 
@@ -68,14 +68,13 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.21"
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.7.0'
 
-    // Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:2.42"
-    kapt "com.google.dagger:hilt-android-compiler:2.42"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-    kapt "androidx.hilt:hilt-compiler:1.0.0"
-    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+    // Koin
+    implementation "io.insert-koin:koin-android:3.2.0"
+    implementation "io.insert-koin:koin-androidx-compose:3.2.0"
+    // Koin for Tests
+    testImplementation "io.insert-koin:koin-test-junit4:3.2.0"
 
     // Compose - Related dependencies
     implementation 'androidx.activity:activity-compose:1.4.0'
@@ -94,4 +93,8 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.2.0-beta03"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:1.2.0-beta03"
+
+    // Communication - Retrofit API
+    //implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation project(path: ':communication')
 }

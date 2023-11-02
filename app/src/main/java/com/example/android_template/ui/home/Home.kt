@@ -6,20 +6,27 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun Home(
+fun HomeComposable(
     navController: NavController,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModelImpl = koinViewModel(),
 ) {
-    val text by remember { mutableStateOf(viewModel.text) }
+    val viewState by viewModel.viewState.collectAsState()
+    HomeScreen(viewState)
+}
+
+@Composable
+fun HomeScreen(
+    viewState: HomeUiModel
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -27,6 +34,12 @@ fun Home(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = text.value ?: "Initial text️")
+        Text(text = viewState.albumsList.map { it.title }.joinToString("\n"))
     }
+}
+
+@Composable
+@Preview
+fun Home() {
+    HomeScreen(HomeUiModel(listOf()))
 }
