@@ -1,16 +1,12 @@
 package com.example.android_template.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import com.example.communication.models.AlbumResponse
+import kotlinx.coroutines.flow.StateFlow
 
-@HiltViewModel
-class HomeViewModel @Inject constructor() : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+data class HomeUiModel(
+    val albumsList: List<AlbumResponse>
+)
+interface HomeViewModel {
+    fun fetchAlbums()
+    val viewState: StateFlow<HomeUiModel>
 }
