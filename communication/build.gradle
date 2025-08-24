@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
@@ -6,7 +8,7 @@ plugins {
 }
 
 android {
-    compileSdk compile_version
+    compileSdkVersion compile_version
 
     defaultConfig {
         minSdk projet_min_sdk
@@ -27,8 +29,10 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
 
     namespace 'com.example.communication'
@@ -38,4 +42,3 @@ dependencies {
     implementation libs.bundles.koin
     implementation libs.bundles.test
 }
-
